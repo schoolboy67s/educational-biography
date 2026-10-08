@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Two Journeys: An Educational Biography</title>
+    <style>
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-bg: #faf8f5;
+            --color-text: #1a1a1a;
+            --color-accent: #c0392b;
+            --color-accent-light: #e8d5d0;
+            --color-muted: #6b6b6b;
+            --color-card: #ffffff;
+            --color-border: #e0dcd6;
+            --font-serif: 'Georgia', 'Times New Roman', serif;
+            --font-sans: 'Helvetica Neue', 'Arial', sans-serif;
+            --max-width: 780px;
+            --wide-width: 1100px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            font-family: var(--font-serif);
+            font-size: 18px;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ===== TYPOGRAPHY ===== */
+        h1, h2, h3, h4 {
+            font-family: var(--font-sans);
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 3.2rem);
+        }
+
+        h2 {
+            font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+            margin-bottom: 1rem;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.75rem;
+        }
+
+        p {
+            margin-bottom: 1.2em;
+        }
+
+        a {
+            color: var(--color-accent);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        a:hover {
+            color: #a03020;
+        }
+
+        /* ===== LAYOUT ===== */
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .container-wide {
+            max-width: var(--wide-width);
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        section {
+            padding: 4rem 0;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 4rem 1.5rem;
+            background: linear-gradient(180deg, #f5f0ea 0%, var(--color-bg) 100%);
+            position: relative;
+        }
+
+        .hero-subtitle {
+            font-family: var(--font-sans);
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--color-accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-description {
+            font-size: 1.15rem;
+            color: var(--color-muted);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            font-style: italic;
+        }
+
+        .hero-scroll {
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-muted);
+            animation: gentle-bounce 2s infinite;
+        }
+
+        @keyframes gentle-bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(6px); }
+        }
+
+        /* ===== PULL QUOTES ===== */
+        .pull-quote {
+            border-left: 4px solid var(--color-accent);
+            padding: 1.5rem 0 1.5rem 2rem;
+            margin: 2.5rem 0;
+            font-size: 1.3rem;
+            font-style: italic;
+            color: var(--color-text);
+            line-height: 1.5;
+        }
+
+        .pull-quote cite {
+            display: block;
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            font-style: normal;
+            color: var(--color-muted);
+            margin-top: 0.75rem;
+        }
+
+        /* ===== CARDS ===== */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .card {
+            background: var(--color-card);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 1.75rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+        }
+
+        .card h3 {
+            color: var(--color-accent);
+            font-size: 1.1rem;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: var(--color-muted);
+            margin-bottom: 0;
+        }
+
+        /* ===== IMAGE PLACEHOLDERS ===== */
+        .image-placeholder {
+            background: linear-gradient(135deg, #e8e4de 0%, #d5cfc8 100%);
+            border: 2px dashed #b5aea5;
+            border-radius: 8px;
+            padding: 3rem 1.5rem;
+            text-align: center;
+            color: var(--color-muted);
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            margin: 2rem 0;
+            min-height: 220px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-placeholder .placeholder-label {
+            font-weight: 700;
+            color: var(--color-text);
+            margin-bottom: 0.5rem;
+        }
+
+        .image-placeholder .placeholder-hint {
+            font-size: 0.8rem;
+            max-width: 400px;
+        }
+
+        .image-placeholder .alt-text {
+            font-size: 0.75rem;
+            font-style: italic;
+            margin-top: 0.75rem;
+            color: #999;
+        }
+
+        figcaption {
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            color: var(--color-muted);
+            text-align: center;
+            margin-top: 0.75rem;
+        }
+
+        /* ===== TIMELINE ===== */
+        .timeline {
+            position: relative;
+            padding: 1rem 0;
+            margin: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--color-accent-light);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 60px;
+            margin-bottom: 2.5rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 12px;
+            top: 6px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--color-accent);
+            border: 3px solid var(--color-bg);
+            box-shadow: 0 0 0 2px var(--color-accent);
+        }
+
+        .timeline-item .timeline-label {
+            font-family: var(--font-sans);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-accent);
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-item h3 {
+            font-size: 1.15rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item p {
+            font-size: 0.95rem;
+            color: var(--color-muted);
+        }
+
+        /* ===== COMPARISON PANEL ===== */
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .comparison-column {
+            background: var(--color-card);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 1.75rem;
+        }
+
+        .comparison-column h3 {
+            font-size: 1.1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--color-accent-light);
+            margin-bottom: 1rem;
+        }
+
+        .comparison-column.mother h3 {
+            color: var(--color-accent);
+        }
+
+        .comparison-column.author h3 {
+            color: #2c6e8a;
+        }
+
+        .comparison-column ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .comparison-column li {
+            font-size: 0.95rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #f0ece8;
+            color: var(--color-muted);
+        }
+
+        .comparison-column li:last-child {
+            border-bottom: none;
+        }
+
+        .comparison-column li strong {
+            color: var(--color-text);
+            font-weight: 600;
+        }
+
+        @media (max-width: 640px) {
+            .comparison {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ===== RESEARCH SECTION ===== */
+        .research-block {
+            background: #f0ede8;
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .research-block h3 {
+            color: var(--color-accent);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .research-block .source {
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            color: var(--color-muted);
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .research-block .stat {
+            font-family: var(--font-sans);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            line-height: 1;
+            margin-bottom: 0.25rem;
+        }
+
+        .research-block .stat-label {
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            color: var(--color-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        /* ===== SCROLL REVEAL ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== NAVIGATION ===== */
+        .site-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(250, 248, 245, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--color-border);
+            z-index: 100;
+            padding: 0.75rem 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .site-nav a {
+            font-family: var(--font-sans);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            text-decoration: none;
+            color: var(--color-muted);
+            transition: color 0.2s;
+        }
+
+        .site-nav a:hover {
+            color: var(--color-accent);
+        }
+
+        /* ===== SECTION DIVIDER ===== */
+        .divider {
+            text-align: center;
+            padding: 2rem 0;
+            color: var(--color-accent-light);
+            font-size: 1.5rem;
+            letter-spacing: 0.5em;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            text-align: center;
+            padding: 3rem 1.5rem;
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            color: var(--color-muted);
+            border-top: 1px solid var(--color-border);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 640px) {
+            body {
+                font-size: 16px;
+            }
+
+            section {
+                padding: 2.5rem 0;
+            }
+
+            .hero {
+                min-height: 70vh;
+            }
+
+            .pull-quote {
+                padding: 1rem 0 1rem 1.25rem;
+                font-size: 1.1rem;
+            }
+
+            .timeline::before {
+                left: 12px;
+            }
+
+            .timeline-item {
+                padding-left: 44px;
+            }
+
+            .timeline-item::before {
+                left: 4px;
+                width: 14px;
+                height: 14px;
+            }
+        }
+
+        /* ===== REDUCED MOTION ===== */
+        @media (prefers-reduced-motion: reduce) {
+            .reveal {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+
+            .hero-scroll {
+                animation: none;
+            }
+
+            html {
+                scroll-behavior: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== NAVIGATION ===== -->
+    <nav class="site-nav" aria-label="Section navigation">
+        <a href="#intro">Introduction</a>
+        <a href="#cycle">Cycle of Socialization</a>
+        <a href="#research">Research Context</a>
+        <a href="#comparison">Comparison</a>
+        <a href="#reflection">Reflection</a>
+    </nav>
+
+    <!-- ===== HERO ===== -->
+    <header class="hero">
+        <p class="hero-subtitle">An Educational Biography</p>
+        <h1>Two Journeys,<br>One Classroom</h1>
+        <p class="hero-description">
+            A mother's schooling in India and a daughter's reflections on socialization,
+            identity, and the kind of teacher she hopes to become.
+        </p>
+        <p class="hero-scroll">Scroll to begin ↓</p>
+    </header>
+
+    <!-- ===== INTRODUCTION ===== -->
+    <section id="intro" class="container">
+        <div class="reveal">
+            <h2>Introduction</h2>
+            <p>
+                This is the educational biography of my mother, who grew up in India.
+                Education and socialization in India differ greatly from America. Students in
+                India face serious societal expectations tied with gender and belief systems,
+                the reality of living on a low household income, strict rules in schools and
+                harsh punishment, and systemic underfunding in her school.
+            </p>
+            <p>
+                Her first experiences of socialization were from her family, who were
+                low-income. Although her parents always told her that she should find a good
+                husband and dismiss her own dreams of becoming a nurse, they really did love
+                her and wanted her to break the cycle of poverty and live an enjoyable life.
+                Unfortunately, she had no siblings, so growing up having to always be there
+                to help her parents with work was a struggle. They tried their best to make
+                her childhood as an only child a good one. At school, her teachers said the
+                same thing — even the female teachers.
+            </p>
+        </div>
+
+        <figure class="reveal">
+            <div class="image-placeholder">
+                <span class="placeholder-label">[Family Photo]</span>
+                <span class="placeholder-hint">
+                    Supply a photo of your mother as a child, or a photo of her parents/family
+                    in India. If you don't have one, use a free-licensed image from
+                    Unsplash or Pexels showing a South Asian family or a 1970s–80s Indian
+                    neighborhood.
+                </span>
+                <span class="alt-text">Alt text: A childhood photograph of the author's mother in India.</span>
+            </div>
+            <figcaption>
+                My mother as a child in India. [Adjust caption to match the actual image you use.]
+            </figcaption>
+        </figure>
+    </section>
+
+    <div class="divider" aria-hidden="true">✦ ✦ ✦</div>
+
+    <!-- ===== CYCLE OF SOCIALIZATION ===== -->
+    <section id="cycle" class="container">
+        <div class="reveal">
+            <h2>The Cycle of Socialization</h2>
+            <p>
+                Harro's Cycle of Socialization describes how we are taught — through family,
+                school, media, and community — to accept certain roles and beliefs without
+                questioning them. My mother's story can be mapped onto each stage of this
+                cycle. Below, I trace her journey and, where relevant, contrast it with my
+                own.
+            </p>
+        </div>
+
+        <!-- Timeline -->
+        <div class="timeline reveal">
+
+            <!-- Stage 1: The Beginning -->
+            <div class="timeline-item">
+                <div class="timeline-label">Stage 1 — The Beginning</div>
+                <h3>Born into a world already shaped</h3>
+                <p>
+                    Before she could speak or understand, my mother was born into a society
+                    where girls were expected to become wives and mothers. Her family was
+                    low-income, and education for girls was seen as a path to a better
+                    marriage, not a career. She had no choice in these starting conditions.
+                </p>
+                <p style="font-size: 0.9rem; color: var(--color-muted); margin-top: 0.5rem;">
+                    <em>My own beginning:</em> [Add a sentence about the world you were born into — your
+                    family's expectations, your neighborhood, your early assumptions about school.]
+                </p>
+            </div>
+
+            <!-- Stage 2: First Socialization -->
+            <div class="timeline-item">
+                <div class="timeline-label">Stage 2 — First Socialization</div>
+                <h3>Family teaches the first lessons</h3>
+                <p>
+                    Her parents told her that education mattered, but for a girl it came with
+                    conditions. Her father said education could never be taken away, but her
+                    mother warned her not to get "too educated" or no man would marry her.
+                    Her dream of becoming a nurse was dismissed. She learned that being a
+                    good girl meant being quiet, obedient, and focused on the home.
+                </p>
+                <div class="pull-quote">
+                    "Don't get too educated, or no one will want to marry you."
+                    <cite>— Her mother's warning</cite>
+                </div>
+                <p style="font-size: 0.9rem; color: var(--color-muted);">
+                    <em>My own first socialization:</em> [Add a memory of what your parents or
+                    caregivers told you about school, success, or your future.]
+                </p>
+            </div>
+
+            <!-- Stage 3: Institutional & Cultural Socialization -->
+            <div class="timeline-item">
+                <div class="timeline-label">Stage 3 — Institutional &amp; Cultural Socialization</div>
+                <h3>School reinforces the message</h3>
+                <p>
+                    In school, the same lessons were repeated. Boys were the future leaders;
+                    girls were the future wives. Teachers called on boys more often, praised
+                    them for solving problems, and gave them roles like class monitor. Girls
+                    were praised for being "quiet and working hard." Sports were for boys.
+                    The computer class in 9th grade was "not for girls." She was sent to home
+                    science instead, where she learned to cook and sew.
+                </p>
+                <div class="pull-quote">
+                    "This class is not for girls. You should take the home science class instead."
+                    <cite>— Her teacher, when she tried to sign up for computer class</cite>
+                </div>
+                <p style="font-size: 0.9rem; color: var(--color-muted);">
+                    <em>My own institutional socialization:</em> [Add a memory of a school rule,
+                    teacher, or policy that shaped what you believed was possible for you.]
+                </p>
+            </div>
+
+            <!-- Stage 4: Enforcements -->
+            <div class="timeline-item">
+                <div class="timeline-label">Stage 4 — Enforcements</div>
+                <h3>Rewards for conformity, punishment for resistance</h3>
+                <p>
+                    Students who obeyed were rewarded with certificates, candy, and praise.
+                    Those who questioned were punished. My mother was once made to stand
+                    outside for talking to a friend during a lesson. Corporal punishment was
+                    normal — boys were hit with rulers or canes. Parents rarely intervened
+                    because complaining would bring shame to the family. The system enforced
+                    obedience through fear.
+                </p>
+                <p style="font-size: 0.9rem; color: var(--color-muted);">
+                    <em>My own enforcements:</em> [Add a moment when you were rewarded for
+                    conforming or punished for resisting a school norm.]
+                </p>
+            </div>
+
+            <!-- Stage 5: Results -->
+            <div class="timeline-item">
+                <div class="timeline-label">Stage 5 — Results</div>
+                <h3>Internalized oppression</h3>
+                <p>
+                    Over time, my mother became quieter. She stopped asking "why." She hid
+                    the parts of herself that didn't fit the idea of a "good girl" — her love
+                    of sports, her curiosity, her dream of being a nurse. She internalized
+                    the message that her value was measured by her marriageability, not her
+                    intelligence.
+                </p>
+                <p style="font-size: 0.9rem; color: var(--color-muted);">
+                    <em>My own results:</em> [Add a way you internalized a message about
+                    yourself — about your ability, your worth, or what you were "supposed" to be.]
+                </p>
+            </div>
+
+            <!-- Stage 6: Actions (Lack of Critical Thinking / Complacency) -->
+            <div class="timeline-item">
+                <div class="timeline-label">Stage 6 — Actions</div>
+                <h3>The cycle continues — unless we interrupt it</h3>
+                <p>
+                    Many people in my mother's life did nothing. They accepted the system
+                    because it was all they knew. Complaining was risky. Conformity was
+                    safer. The cycle perpetuated itself because no one challenged it. But
+                    there were exceptions — people who chose a different path.
+                </p>
+                <p style="font-size: 0.9rem; color: var(--color-muted);">
+                    <em>My own actions:</em> [Add a time you either went along with something
+                    you knew was wrong, or a time you chose to speak up.]
+                </p>
+            </div>
+
+            <!-- Stage 7: Change / Resistance -->
+            <div class="timeline-item">
+                <div class="timeline-label">Stage 7 — Change &amp; Resistance</div>
+                <h3>The Hindi teacher who saw her</h3>
+                <p>
+                    Among all the strict and biased teachers, there was one exception. A
+                    Hindi teacher in 7th or 8th grade who never hit anyone and never made
+                    students stand outside. After my mother wrote a good paper, this teacher
+                    told her she had a gift with words. It was the first time a teacher had
+                    ever acknowledged her as someone with something valuable to offer. That
+                    moment stayed with her for decades.
+                </p>
+                <div class="pull-quote">
+                    "You have a gift with words."
+                    <cite>— Her Hindi teacher</cite>
+                </div>
+                <p style="font-size: 0.9rem; color: var(--color-muted);">
+                    <em>My own moment of resistance or change:</em> [Add a person, book, or
+                    experience that interrupted a harmful belief you had absorbed.]
+                </p>
+            </div>
+
+        </div>
+
+        <figure class="reveal">
+            <div class="image-placeholder">
+                <span class="placeholder-label">[Classroom Illustration / Diagram]</span>
+                <span class="placeholder-hint">
+                    Create or find a simple diagram of Harro's Cycle of Socialization.
+                    You can draw it yourself, use a free template from Canva, or create a
+                    text-based version. Label the seven stages: The Beginning, First
+                    Socialization, Institutional &amp; Cultural Socialization, Enforcements,
+                    Results, Actions, and Change.
+                </span>
+                <span class="alt-text">Alt text: Diagram of Harro's Cycle of Socialization showing seven stages.</span>
+            </div>
+            <figcaption>
+                Harro's Cycle of Socialization. [Add your own diagram or a free-licensed version.]
+            </figcaption>
+        </figure>
+    </section>
+
+    <div class="divider" aria-hidden="true">✦ ✦ ✦</div>
+
+    <!-- ===== RESEARCH CONTEXT ===== -->
+    <section id="research" class="container">
+        <div class="reveal">
+            <h2>Research Context</h2>
+            <p>
+                My mother's memories are not isolated. Government data and news reporting
+                confirm that the conditions she describes — underfunded schools, corporal
+                punishment, and gender discrimination — are part of larger systemic patterns
+                in India.
+            </p>
+        </div>
+
+        <div class="research-block reveal">
+            <h3>Underfunded Schools: The Data</h3>
+            <p class="source">
+                Source: <em>ThePrint</em>, "Gen Alpha is upset over poor school infra,
+                shortage of teachers. Govt data shows what's wrong" (2026).
+            </p>
+            <div class="stat">95,000</div>
+            <p class="stat-label">Schools without functional electricity.</p>
+            <div class="stat">5.42 lakh</div>
+            <p class="stat-label">Schools without functional computers.</p>
+            <div class="stat">1.39 lakh</div>
+            <p class="stat-label">Schools without a library.</p>
+            <p>
+                The article explains that these gaps are not new. They are documented in the
+                government's own UDISE+ report. My mother described sharing textbooks
+                because the school couldn't afford enough copies. She described a cracked
+                blackboard and no library. These numbers show that her experience was part
+                of a national pattern, not an exception.
+            </p>
+        </div>
+
+        <div class="research-block reveal">
+            <h3>Corporal Punishment: Outlawed, Still Prevalent</h3>
+            <p class="source">
+                Source: <em>Al Jazeera</em>, "A teacher's slap, student's death revive
+                India's corporal punishment debate" (2026).
+            </p>
+            <p>
+                India banned corporal punishment in schools in 2009. But the practice
+                continues. A 2018 study by the NGO Agrasar found that nearly
+                <strong>80 percent</strong> of low-income schoolchildren in one city
+                reported being beaten several times a week. A majority of their parents
+                approved of it.
+            </p>
+            <p>
+                My mother said that parents rarely intervened: "If the teacher hit you, you
+                must have done something wrong." The article explains why — complaining
+                could bring shame to the family, and school authorities often protected
+                teachers. The law exists, but the culture has not caught up.
+            </p>
+        </div>
+
+        <figure class="reveal">
+            <div class="image-placeholder">
+                <span class="placeholder-label">[Infographic: School Infrastructure Data]</span>
+                <span class="placeholder-hint">
+                    Create a simple bar chart or icon-based infographic showing the three
+                    statistics above (95,000 without electricity, 5.42 lakh without
+                    computers, 1.39 lakh without libraries). Use Canva, Google Charts, or
+                    even hand-draw it and photograph it.
+                </span>
+                <span class="alt-text">Alt text: Infographic showing school infrastructure gaps in India.</span>
+            </div>
+            <figcaption>
+                Visualizing the gaps in India's school infrastructure. [Add your own infographic.]
+            </figcaption>
+        </figure>
+    </section>
+
+    <div class="divider" aria-hidden="true">✦ ✦ ✦</div>
+
+    <!-- ===== COMPARISON ===== -->
+    <section id="comparison" class="container-wide">
+        <div class="container">
+            <div class="reveal">
+                <h2>Two Cycles, Side by Side</h2>
+                <p>
+                    My mother's cycle of socialization and my own are both shaped by family,
+                    school, and community — but the messages and the resources were very
+                    different.
+                </p>
+            </div>
+        </div>
+
+        <div class="comparison reveal">
+            <div class="comparison-column mother">
+                <h3>My Mother's Cycle</h3>
+                <ul>
+                    <li><strong>Family:</strong> Education was important, but marriage was more important. "Don't get too educated."</li>
+                    <li><strong>School:</strong> Corporal punishment, gender segregation, boys given leadership roles.</li>
+                    <li><strong>Resources:</strong> Shared textbooks, no computers, no library, cracked blackboard.</li>
+                    <li><strong>Gender:</strong> Girls were future wives. Computer class was "not for girls."</li>
+                    <li><strong>Resistance:</strong> One Hindi teacher said, "You have a gift with words."</li>
+                </ul>
+            </div>
+            <div class="comparison-column author">
+                <h3>My Cycle</h3>
+                <ul>
+                    <li><strong>Family:</strong> Education was the most important thing. "Focus on your studies."</li>
+                    <li><strong>School:</strong> Anti-cheating posters, assigned classroom jobs, awards for conformity.</li>
+                    <li><strong>Resources:</strong> Computers, libraries, a variety of programs and extracurriculars.</li>
+                    <li><strong>Gender:</strong> [Add a specific memory of how gender shaped your school experience.]</li>
+                    <li><strong>Resistance:</strong> [Add a person or moment that challenged a belief you had absorbed.]</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider" aria-hidden="true">✦ ✦ ✦</div>
+
+    <!-- ===== REFLECTION ===== -->
+    <section id="reflection" class="container">
+        <div class="reveal">
+            <h2>What This Means for Me as a Future Teacher</h2>
+            <p>
+                My mother's story is not just her story. It is a reminder of how powerful
+                socialization is — how family, school, and community can teach a child what
+                they are "supposed" to be before they have a chance to decide for
+                themselves.
+            </p>
+            <p>
+                As a future teacher, I want to be the Hindi teacher in a student's life.
+                The one who sees them. The one who says, "You have a gift." The one who
+                does not hit, does not shame, does not treat one group of students as more
+                worthy than another.
+            </p>
+            <p>
+                I also want to disrupt the biases I have absorbed. I grew up with more
+                resources than my mother did. I had computers, libraries, and teachers who
+                encouraged creativity. But I also absorbed messages — about who succeeds,
+                who belongs, and what "normal" looks like. Those messages can be just as
+                limiting as the ones my mother heard.
+            </p>
+            <p>
+                The universal message I hope to live by is this:
+            </p>
+            <div class="pull-quote" style="font-size: 1.4rem; text-align: center; border-left: none; border-top: 2px solid var(--color-accent); border-bottom: 2px solid var(--color-accent); padding: 2rem 1rem;">
+                "Every student deserves to be seen, heard, and valued for who they are —
+                not for who society tells them they should be."
+            </div>
+            <p>
+                This is what my mother's Hindi teacher did for her. It is what I hope to do
+                for every student who walks into my classroom.
+            </p>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <p>
+            Educational Biography Project · [Your Name] · [Course Name] · [Date]
+        </p>
+        <p style="margin-top: 0.5rem;">
+            Built with HTML, CSS, and JavaScript.
+        </p>
+    </footer>
+
+    <!-- ===== JAVASCRIPT: SCROLL REVEAL ===== -->
+    <script>
+        (function() {
+            // Intersection Observer for scroll-triggered reveals
+            const revealElements = document.querySelectorAll('.reveal');
+
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver(function(entries) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -50px 0px'
+                });
+
+                revealElements.forEach(function(el) {
+                    observer.observe(el);
+                });
+            } else {
+                // Fallback for older browsers
+                revealElements.forEach(function(el) {
+                    el.classList.add('visible');
+                });
+            }
+
+            // Smooth scroll for navigation links (with offset for fixed nav)
+            document.querySelectorAll('.site-nav a').forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    if (targetId && targetId.startsWith('#')) {
+                        e.preventDefault();
+                        const target = document.querySelector(targetId);
+                        if (target) {
+                            const navHeight = document.querySelector('.site-nav').offsetHeight;
+                            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight - 20;
+                            window.scrollTo({
+                                top: targetPosition,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            });
+        })();
+    </script>
+
+</body>
+</html>
